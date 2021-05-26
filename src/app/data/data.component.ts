@@ -25,7 +25,7 @@ export class DataComponent implements OnInit {
       }
     }
   }
-  updateCurrentVehicle(): void{
+  updateCurrentJoke(): void{
     localStorage.setItem('CurrentJoke', JSON.stringify(this.currJoke));
 
     if (this.validateCurrentJoke()) {
