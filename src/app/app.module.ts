@@ -14,25 +14,25 @@ import { MatChipsModule } from '@angular/material/chips';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './list/list/list.component';
+import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
-import { RatesComponent } from './data/rates.component';
 import { DataComponent } from './data/data.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     LoginComponent,
-    RatesComponent,
     DataComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatToolbarModule,
-    MatMenuModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatToolbarModule,
+        MatMenuModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
