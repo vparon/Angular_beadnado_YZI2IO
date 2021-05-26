@@ -16,14 +16,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list/list.component';
 import { LoginComponent } from './login/login.component';
-import { RatesComponent } from './rates/rates.component';
+import { RatesComponent } from './data/rates.component';
+import { DataComponent } from './data/data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     LoginComponent,
-    RatesComponent
+    RatesComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule,
