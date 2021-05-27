@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from './data.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Joke} from './joke.model';
+import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-data',
@@ -9,9 +12,26 @@ import {Router} from '@angular/router';
 })
 export class DataComponent implements OnInit {
 
-  model: Array<Joke>;
+  id: string | undefined;
+  currJoke: Joke = {
+    categories: 'data.categories',
+    created_at: 'data.created_at',
+    icon_url: 'data.icon_url',
+    id: 'data.id',
+    updated_at: 'data.updated_at',
+    url: 'data.url',
+    value: 'data.value'
+  };
 
-  constructor(private router: Router, private dataService: DataService) { }
+  allJoke: { [x: string]: any; } | undefined;
+  displayedColumns: string[] = ['value'];
+  dataSource: any;
+
+  constructor(private activatedRoute: ActivatedRoute,
+              private http: HttpClient,
+              private router: Router,
+              private dataservice: DataService
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(param => {
@@ -25,86 +45,5 @@ export class DataComponent implements OnInit {
       }
     }
   }
-  updateCurrentJoke(): void{
-    localStorage.setItem('CurrentJoke', JSON.stringify(this.currJoke));
 
-    if (this.validateCurrentJoke()) {
-      const localData: JSON = JSON.parse(localStorage.getItem('AllJokes'));
-      localData[this.currTank].categories = this.currJoke.categories;
-      localData[this.currTank].created_at = this.currJoke.created_at;
-      localData[this.currTank].icon_url = this.currJoke.icon_url;
-      localData[this.currTank].id = this.currJoke.id;
-      localData[this.currTank].updated_at = this.currJoke.updated_at;
-      localData[this.currTank].url = this.currJoke.url;
-      localData[this.currTank].value = this.currJoke.value;
-
-      localStorage.setItem('AllJokes', JSON.stringify(localData));
-      alert('Sikeres szerkesztés!');
-      return;
-    }
-    else {
-      alert('Nincs minden mező jól kitöltve!');
-    }
-  }
-
-  deleteCurrentJoke(): void {
-    localStorage.setItem('CurrentJoke', JSON.stringify(this.currJoke));
-
-    const localData: JSON = JSON.parse(localStorage.getItem('AllJokes'));
-    delete localData[this.currJoke];
-
-    localStorage.setItem('AllJokes', JSON.stringify(localData));
-    alert('Sikeres törlés!');
-    this.router.navigate(['list']);
-
-  }
-
-  createJoke(): void{
-    localStorage.setItem('CurrentJoke', JSON.stringify(this.currJoke));
-    const prevId = this.id;
-
-    this.currJoke = Math.round(Math.random() * (2147 - 1) + 1);
-    this.allJoke = JSON.parse(localStorage.getItem('AllJokes'));
-    this.id = this.currJoke.toString();
-
-
-    // tslint:disable-next-line:forin
-    for (const i in this.allJoke){
-      if (i === this.id) {
-        alert('Van ilyen azonosító!');
-        return;
-      }
-
-      if (this.validateCurrentVehicle()){
-        const localData: JSON = JSON.parse(localStorage.getItem('AllJokes'));
-        localData[this.id] = {
-          categories: this.currJoke.categories,
-          created_at: this.currJoke.created_at,
-          icon_url: this.currJoke.icon_url,
-          id: this.currJoke.id,
-          updated_at: this.currJoke.updated_at,
-          url: this.currJoke.url,
-          value: this.currJoke.value
-        };
-        localStorage.setItem('AllJokes', JSON.stringify(localData));
-        alert('Sikeres hozzáadás!');
-        return;
-      }
-      else {
-        alert('Nincs minden mező megfelelően kitöltve!');
-        return;
-      }
-    }
-  }
-
-  validateCurrentJoke(): boolean{
-    if (this.currJoke.categories === '' || this.currJoke.created_at === '' || this.ccurrJoke.icon_url === '' || this.currJoke.id === '' ||
-      this.currJoke.updated_at === '' || this.currJoke.url === '' || this.currJoke.value === '')
-    {
-      console.log('validation: not ok');
-      return false;
-    }
-    console.log('validation: ok');
-    return true;
-  }
 }
