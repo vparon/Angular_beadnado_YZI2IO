@@ -16,15 +16,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
-import { DataComponent } from './data/data.component';
 import {FormsModule} from '@angular/forms';
+import { JokeDetalilsComponent } from './joke-detalils/joke-detalils.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     LoginComponent,
-    DataComponent
+    JokeDetalilsComponent
   ],
     imports: [
         BrowserModule,
