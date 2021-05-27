@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 export interface Jokes {
-  joke_id: string;
+  joke_id: number;
   value: string;
 }
 
@@ -52,12 +52,12 @@ export class ListComponent implements OnInit {
     });
   }
   createDataSource(data: { [x: string]: { value: any; }; }): Jokes[] {
-    const results: Jokes[] = [{joke_id: 'nulladik', value: 'üres'}];
+    const results: Jokes[] = [{joke_id: 0, value: 'üres'}];
     results.shift();
     // tslint:disable-next-line:forin
     for (const i in data){
       // tslint:disable-next-line:radix
-      const joke: Jokes = {joke_id: i, value: data[i].value};
+      const joke: Jokes = {joke_id: parseInt(i), value: data[i].value};
       results.push(joke);
     }
     return results;
