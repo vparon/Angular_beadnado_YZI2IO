@@ -1,1 +1,79 @@
-<p>joke-detalils works!</p>
+div class="page-content page-container" id="page-content">
+<div class="padding">
+  <div >
+    <div >
+      <div class="card user-card-full">
+        <div class="pad">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-4 6bg-c-lite-green user-profile">
+              <div class="card-block text-center text-white">
+                <div class="m-b-25"> <img src="{{currJoke['icon_url']}}" class="img-radius" alt="Joke_ICon"> </div>
+                <div class="padding">
+                  <textarea type="text" class="form-control" id="exampleFormControlTextarea1" rows="6" [(ngModel)]="currJoke['value']"> </textarea>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="col-sm-8">
+              <div class="card-block">
+
+                <p class="m-b-10 f-w-600">Category</p>
+                <input type="text" class="m-b-20 p-b-5 b-b-default f-w-600" [(ngModel)]="currJoke['categories']">
+                <div class="row">
+                  <div class="col-sm-7">
+                    <p class="m-b-10 f-w-600">Created</p>
+
+                    <input type="text" class="text-muted f-w-400" [(ngModel)]="currJoke['created_at']">
+                  </div>
+
+                  <div class="col-sm-7">
+                    <p class="m-b-10 f-w-600">ID</p>
+
+                    <input type="text" class="text-muted f-w-400" [(ngModel)]="currJoke['id']">
+                  </div>
+                </div>
+
+                <div class="col-sm-7">
+                  <p class="m-b-10 f-w-600">Updated</p>
+
+                  <input type="text" class="text-muted f-w-400" [(ngModel)]="currJoke['updated_at']">
+                </div>
+                <div class="col-sm-7">
+                  <p class="m-b-10 f-w-600">Url</p>
+
+                  <input type="text" class="text-muted f-w-400" [(ngModel)]="currJoke['url']">
+                </div>
+                <div class="col-sm-7">
+                  <p class="m-b-10 f-w-600">Joke</p>
+
+                  <input type="text" class="text-muted f-w-400" [(ngModel)]="currJoke['value']">
+                </div>
+
+                <div class="row">
+                  <div class="col-sm">
+                    <button class="btn btn-secondary btn-sm" (click)="updateCurrentJoke()">Szerkesztés</button>
+                  </div>
+                  <div class="col-sm">
+                    <button class="btn btn-secondary btn-sm" (click)="deleteCurrentJoke()">Törlés</button>
+                  </div>
+                  <div class="col-sm">
+                    <button class="btn btn-secondary btn-sm" (click)="createJoke()">Hozzáadás Újként</button>
+                  </div>
+                  <div class="col-sm">
+                  </div>
+                  <div class="col-sm">
+                  </div>
+                  <div class="col-sm">
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
